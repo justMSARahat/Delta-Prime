@@ -8,7 +8,7 @@ use App\Models\Backend\category;
 use App\Models\Backend\brand;
 use App\Models\Backend\product;
 use App\Models\Backend\order;
-use App\Models\customer;
+use App\Models\Customer;
 use DB;
 
 class AdminController extends Controller

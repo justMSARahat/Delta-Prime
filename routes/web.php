@@ -99,6 +99,12 @@ Route::get('payment/success', 'App\Http\Controllers\Backend\OrderController@succ
 Route::get('newsletter','App\Http\Controllers\Backend\NewsletterController@create');
 Route::post('newsletter','App\Http\Controllers\Backend\NewsletterController@store');
 
+
+Route::get('user-password/reset','App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+Route::post('user-password/email','App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+Route::get('user-password/reset/{token}','App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('admin.password.reset');
+Route::post('user-password/reset','App\Http\Controllers\Auth\ResetPasswordController@reset')->name('admin.password.update');
+
 /*
 |--------------------------------------------------------------------------
 | Website Backend Routes
@@ -329,5 +335,14 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function(){
         $exitCode = Artisan::call('view:clear');
         return redirect()->route('optimize.show');
     })->name('view');
+    Route::get('/totaloptimize', function() {
+        Artisan::call('cache:clear');
+        Artisan::call('optimize');
+        Artisan::call('config:cache');
+        Artisan::call('event:cache');
+        Artisan::call('route:clear');
+        Artisan::call('view:clear');
+        return "Cleared!";
+    });
 
 });

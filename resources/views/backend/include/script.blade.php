@@ -210,7 +210,7 @@
                 toastr.warning("{{ Session::get('message') }}");
              break;
 
-             case 'error':
+             case 'danger':
                 toastr.options.positionClass = 'toast-bottom-left';
                 toastr.error("{{ Session::get('message') }}");
              break;

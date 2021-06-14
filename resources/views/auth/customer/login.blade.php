@@ -66,7 +66,7 @@
                                         <label for="remember">Remember me!</label>
                                     </span>
                                     <span class="forgot-login f-right">
-                                        <a href="#">Lost your password?</a>
+                                        <a href="{{ route('admin.password.request') }}">Lost your password?</a>
                                     </span>
                                 </div>
                                 <button class="os-btn w-100">Login Now</button>

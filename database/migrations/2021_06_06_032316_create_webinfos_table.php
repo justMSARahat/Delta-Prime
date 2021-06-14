@@ -14,14 +14,14 @@ class CreateWebinfosTable extends Migration
     public function up()
     {
         Schema::create('webinfos', function (Blueprint $table) {
-            $table->id();
-            $table->string('title')->nullable();
+            $table->increments('id');
+            $table->text('title')->nullable();
             $table->text('description')->nullable();
             $table->text('favicon')->nullable();
             $table->text('logo')->nullable();
             $table->text('site_url')->nullable();
-            $table->text('currency')->default('USD')->nullable();
-            $table->text('currency_icon')->default('$')->nullable();
+            $table->text('currency')->nullable();
+            $table->text('currency_icon')->nullable();
             $table->timestamps();
         });
     }
