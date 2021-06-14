@@ -4,7 +4,10 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+        @php
+            $webinfo    = App\Models\Backend\webinfo::orderBy('id','asc')->first();
+        @endphp
+      <a class="h1">{{ $webinfo->title }}</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
@@ -45,13 +48,6 @@
           <!-- /.col -->
         </div>
       </form>
-
-
-      <p class="mb-1">
-        @if (Route::has('password.request'))
-            <a href="{{ route('password.request') }}">I forgot my password</a>
-        @endif
-      </p>
     </div>
     <!-- /.card-body -->
   </div>
