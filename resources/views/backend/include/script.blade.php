@@ -188,4 +188,53 @@
   // DropzoneJS Demo Code End
 </script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript">
+    @if ( Session::has('message') )
+         var type = "{{ Session::get('alert-type','info') }}";
+
+         switch (type){
+             case 'info':
+
+                 toastr.options.positionClass = 'toast-bottom-left';
+                 toastr.info("{{ Session::get('message') }}");
+             break;
+
+             case 'success':
+                toastr.options.positionClass = 'toast-bottom-left';
+                toastr.success("{{ Session::get('message') }}");
+             break;
+
+             case 'warning':
+                toastr.options.positionClass = 'toast-bottom-left';
+                toastr.warning("{{ Session::get('message') }}");
+             break;
+
+             case 'error':
+                toastr.options.positionClass = 'toast-bottom-left';
+                toastr.error("{{ Session::get('message') }}");
+             break;
+     }
+     @endif
+</script>
+<script>
+toastr.options = {
+  "closeButton": true,
+  "debug": true,
+  "newestOnTop": true,
+  "progressBar": true,
+  "positionClass": "toast-bottom-left",
+  "preventDuplicates": true,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+</script>
+
+
 @yield('chart')

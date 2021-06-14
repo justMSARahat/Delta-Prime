@@ -78,7 +78,11 @@ class FooterController extends Controller
         }
 
         $footer->save();
-        return redirect()->route('footer.manage');
+        $notification = array(
+            'message' => 'Footer Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('footer.manage')->with($notification);
     }
 
 }

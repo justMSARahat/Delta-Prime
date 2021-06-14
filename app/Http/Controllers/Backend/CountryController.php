@@ -57,7 +57,12 @@ class CountryController extends Controller
         $country->status   = $request->status;
 
         $country->save();
-        return redirect()->route('country.manage');
+        
+        $notification = array(
+            'message' => 'New Location Added',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('country.manage')->with($notification);
     }
 
     /**
@@ -105,7 +110,12 @@ class CountryController extends Controller
         $country->status   = $request->status;
 
         $country->save();
-        return redirect()->route('country.manage');
+        
+        $notification = array(
+            'message' => 'Location Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('country.manage')->with($notification);
     }
 
     /**
@@ -120,7 +130,12 @@ class CountryController extends Controller
 
         if (!is_null($country)) {
             $country->delete();
-            return redirect()->route('country.manage');
+            
+            $notification = array(
+                'message' => 'Location Removed',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('country.manage')->with($notification);
         }
         else{
             return redirect()->route('country.manage');

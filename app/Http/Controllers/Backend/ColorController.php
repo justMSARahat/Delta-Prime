@@ -57,7 +57,11 @@ class ColorController extends Controller
         $color->title          = $request->title;
 
         $color->save();
-        return redirect()->route('color.manage');
+        $notification = array(
+            'message' => 'New Color Added',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('color.manage')->with($notification);
     }
 
     /**
@@ -101,7 +105,11 @@ class ColorController extends Controller
         $color->title          = $request->title;
 
         $color->save();
-        return redirect()->route('color.manage');
+        $notification = array(
+            'message' => 'Color Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('color.manage')->with($notification);
 
     }
 
@@ -116,7 +124,11 @@ class ColorController extends Controller
         $color = color::find($id);
         if( !is_null($color) ){
             $color->delete();
-            return redirect()->route('color.manage');
+            $notification = array(
+                'message' => 'Color Removed',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('color.manage')->with($notification);
         }
         else{
             return back();

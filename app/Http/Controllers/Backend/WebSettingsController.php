@@ -79,7 +79,11 @@ class WebSettingsController extends Controller
         }
 
         $webinfo->save();
-        return redirect()->route('info.show');
+        $notification = array(
+            'message' => 'Website Information Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('info.show')->with($notification);
     }
 
     public function putPermanentEnv($key, $value)

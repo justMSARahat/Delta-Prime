@@ -74,7 +74,11 @@ class ReviewController extends Controller
         if( !is_null($review) ){
             $review->status     = 1;
             $review->save();
-            return back();
+            $notification = array(
+                'message' => 'Rating Approved',
+                'alert-type' => 'success'
+            );
+            return back()->with($notification);
         }
         else{
             return back();

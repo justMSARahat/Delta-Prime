@@ -68,7 +68,11 @@ class HeadertitleController extends Controller
         $heading->position       = $request->position;
 
         $heading->save();
-        return redirect()->route('heading.manage');
+        $notification = array(
+            'message' => 'Information Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('heading.manage')->with($notification);
 
     }
 

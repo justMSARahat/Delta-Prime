@@ -89,7 +89,12 @@ class PostController extends Controller
         }
 
         $post->save();
-        return redirect()->route('post.manage');
+        
+        $notification = array(
+            'message' => 'New Post Published',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('post.manage')->with($notification);
 
     }
 
@@ -190,7 +195,12 @@ class PostController extends Controller
         }
 
         $post->save();
-        return redirect()->route('post.manage');
+        
+        $notification = array(
+            'message' => 'Post Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('post.manage')->with($notification);
     }
 
     /**
@@ -213,7 +223,12 @@ class PostController extends Controller
                 file::delete('Backend/Image/post/' .$post->third_image);
             }
             $post->delete();
-            return redirect()->route('post.manage');
+            
+            $notification = array(
+                'message' => 'Post Removed',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('post.manage')->with($notification);
         }
         else{
             return back();

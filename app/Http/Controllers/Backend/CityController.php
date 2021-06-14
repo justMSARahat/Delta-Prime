@@ -59,7 +59,11 @@ class CityController extends Controller
         $city->status   = $request->status;
 
         $city->save();
-        return redirect()->route('city.manage');
+        $notification = array(
+            'message' => 'New Location Added',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('city.manage')->with($notification);
     }
 
     /**
@@ -110,7 +114,11 @@ class CityController extends Controller
         $city->status   = $request->status;
 
         $city->save();
-        return redirect()->route('city.manage');
+        $notification = array(
+            'message' => 'Location Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('city.manage')->with($notification);
     }
 
     /**
@@ -125,7 +133,11 @@ class CityController extends Controller
 
         if (!is_null($city)) {
             $city->delete();
-            return redirect()->route('city.manage');
+            $notification = array(
+                'message' => 'Location Removed',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('city.manage')->with($notification);
         }
         else{
             return redirect()->route('city.manage');

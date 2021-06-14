@@ -9,7 +9,7 @@ use App\Models\Backend\menu_opt;
 use Illuminate\Support\Str;
 use File;
 use Image;
-
+   
 class MenuController extends Controller
 {
     /**

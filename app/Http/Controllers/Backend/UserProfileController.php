@@ -102,7 +102,12 @@ class UserProfileController extends Controller
         }
 
         $customer->save();
-        return redirect()->back();
+        
+        $notification = array(
+            'message' => 'User Information Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 
     public function address(Request $request, $id)
@@ -120,7 +125,12 @@ class UserProfileController extends Controller
         $customer->state        = $request->state;
 
         $customer->save();
-        return redirect()->back();
+        
+        $notification = array(
+            'message' => 'User Information Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 
     public function password(Request $request, $id)

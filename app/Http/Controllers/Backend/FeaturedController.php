@@ -85,7 +85,12 @@ class FeaturedController extends Controller
         }
 
         $featured->save();
-        return redirect()->route('feature.manage');
+        
+        $notification = array(
+            'message' => 'New Product Published',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('feature.manage')->with($notification);
     }
 
     /**
@@ -151,7 +156,12 @@ class FeaturedController extends Controller
         }
 
         $featured->save();
-        return redirect()->route('feature.manage');
+        
+        $notification = array(
+            'message' => 'Product Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('feature.manage')->with($notification);
 
     }
 
@@ -169,7 +179,12 @@ class FeaturedController extends Controller
                 file::delete('Backend/Image/Featured/' .$featured->image);
             }
             $featured->delete();
-            return redirect()->route('feature.manage');
+            
+            $notification = array(
+                'message' => 'Product Removed',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('feature.manage')->with($notification);
         }
         else{
             return back();

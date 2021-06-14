@@ -86,7 +86,11 @@ class CommentController extends Controller
         $comment = comment::find($id);
         if( !is_null($comment) ){
             $comment->delete();
-            return redirect()->route('comment.manage');
+            $notification = array(
+                'message' => 'Comment Deleted',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('comment.manage')->with($notification);
         }
         else{
             return redirect()->route('comment.manage');

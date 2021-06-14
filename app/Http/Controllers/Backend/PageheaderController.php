@@ -86,7 +86,11 @@ class PageheaderController extends Controller
         }
 
         $pageheader->save();
-        return redirect()->route('header.manage');
+        $notification = array(
+            'message' => 'Information Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('header.manage')->with($notification);
 
     }
 

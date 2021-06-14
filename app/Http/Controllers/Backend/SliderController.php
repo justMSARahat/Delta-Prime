@@ -83,7 +83,12 @@ class SliderController extends Controller
         }
 
         $slider->save();
-        return redirect()->route('slider.manage');
+        
+        $notification = array(
+            'message' => 'Slider Created',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('slider.manage')->with($notification);
 
     }
 
@@ -153,7 +158,12 @@ class SliderController extends Controller
         }
 
         $slider->save();
-        return redirect()->route('slider.manage');
+        
+        $notification = array(
+            'message' => 'Slider Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('slider.manage')->with($notification);
 
     }
 
@@ -171,7 +181,12 @@ class SliderController extends Controller
                 file::delete('Backend/Image/Slider/' .$slider->image);
             }
             $slider->delete();
-            return redirect()->route('slider.manage');
+            
+        $notification = array(
+            'message' => 'Slider Removed',
+            'alert-type' => 'danger'
+        );
+            return redirect()->route('slider.manage')->with($notification);
         }
         else{
             return back();

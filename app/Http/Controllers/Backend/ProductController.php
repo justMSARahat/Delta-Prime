@@ -136,7 +136,12 @@ class ProductController extends Controller
         }
 
         $Product->save();
-        return redirect()->route('product.manage');
+        
+        $notification = array(
+            'message' => 'New Product Published',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('product.manage')->with($notification);
 
     }
     /**
@@ -259,7 +264,12 @@ class ProductController extends Controller
         }
 
         $Product->save();
-        return redirect()->route('product.manage');
+        
+        $notification = array(
+            'message' => 'Product Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('product.manage')->with($notification);
     }
 
     /**
@@ -282,7 +292,12 @@ class ProductController extends Controller
                 file::delete('Backend/Image/Product/' .$product->third_image);
             }
             $product->delete();
-            return redirect()->route('product.manage');
+            
+            $notification = array(
+                'message' => 'Product Removed',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('product.manage')->with($notification);
         }
         else{
             return back();

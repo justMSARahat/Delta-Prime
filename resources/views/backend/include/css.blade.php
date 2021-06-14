@@ -25,3 +25,6 @@
 <link rel="stylesheet" href="{{ asset('Backend/plugins/select2/css/select2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('Backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">

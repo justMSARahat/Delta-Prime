@@ -67,7 +67,11 @@ class CategoryController extends Controller
         $category->feature        = $request->feature;
 
         $category->save();
-        return redirect()->route('cat.manage');
+        $notification = array(
+            'message' => 'New Category Published',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('cat.manage')->with($notification);
 
     }
 
@@ -120,7 +124,11 @@ class CategoryController extends Controller
         $category->feature        = $request->feature;
 
         $category->save();
-        return redirect()->route('cat.manage');
+        $notification = array(
+            'message' => 'Category Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('cat.manage')->with($notification);
 
 
     }
@@ -136,7 +144,11 @@ class CategoryController extends Controller
         $category = category::find($id);
         if( !is_null($category) ){
             $category->delete();
-            return redirect()->route('cat.manage');
+            $notification = array(
+                'message' => 'Category Deleted',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('cat.manage')->with($notification);
         }
         else{
             return back();

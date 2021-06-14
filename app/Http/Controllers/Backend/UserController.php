@@ -58,7 +58,12 @@ class UserController extends Controller
 
 
         $customer->save();
-        return redirect()->route('user.manage');
+        
+        $notification = array(
+            'message' => 'User Created',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('user.manage')->with($notification);
     }
     public function user_edit(Request $request, $id){
         $user   = Customer::find($id);
@@ -105,7 +110,12 @@ class UserController extends Controller
         }
 
         $customer->save();
-        return redirect()->route('user.manage');
+        
+        $notification = array(
+            'message' => 'User Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('user.manage')->with($notification);
     }
 
     public function user_destroy(Request $request, $id){
@@ -114,7 +124,12 @@ class UserController extends Controller
         $customer->status      = 2;
 
         $customer->save();
-        return redirect()->route('user.manage');
+        
+        $notification = array(
+            'message' => 'User Removed',
+            'alert-type' => 'danger'
+        );
+        return redirect()->route('user.manage')->with($notification);
     }
 
 
@@ -161,7 +176,12 @@ class UserController extends Controller
 
 
         $customer->save();
-        return redirect()->route('admin.manage');
+        
+        $notification = array(
+            'message' => 'User Created',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.manage')->with($notification);
     }
 
     public function admin_edit(Request $request, $id){
@@ -210,7 +230,12 @@ class UserController extends Controller
         }
 
         $customer->save();
-        return redirect()->route('admin.manage');
+        
+        $notification = array(
+            'message' => 'User Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.manage')->with($notification);
     }
 
     public function admin_destroy(Request $request, $id){
@@ -219,6 +244,11 @@ class UserController extends Controller
         $customer->status      = 2;
 
         $customer->save();
-        return redirect()->route('admin.manage');
+        
+        $notification = array(
+            'message' => 'User Removed',
+            'alert-type' => 'danger'
+        );
+        return redirect()->route('admin.manage')->with($notification);
     }
 }

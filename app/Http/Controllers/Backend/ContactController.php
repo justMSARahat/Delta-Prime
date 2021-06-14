@@ -61,7 +61,11 @@ class ContactController extends Controller
         $info->map_api      = $request->map_api;
 
         $info->save();
-        return redirect()->route('contact.manage');
+        $notification = array(
+            'message' => 'Contact Information Updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('contact.manage')->with($notification);
     }
 
 }

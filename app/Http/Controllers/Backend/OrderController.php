@@ -215,8 +215,13 @@ class OrderController extends Controller
         if( !is_null( $order ) ){
             $order->status  = 3;
             $order->save();
+            
+            $notification = array(
+                'message' => 'Order Completed',
+                'alert-type' => 'success'
+            );
 
-            return redirect()->route('admin.order.complete');
+            return redirect()->route('admin.order.complete')->with($notification);
         }
         else{
             return back();
@@ -229,7 +234,11 @@ class OrderController extends Controller
             $order->status  = 2;
             $order->save();
 
-            return redirect()->route('admin.order.pending');
+            $notification = array(
+                'message' => 'Order Shipped',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('admin.order.pending')->with($notification);
         }
         else{
             return back();
@@ -242,7 +251,11 @@ class OrderController extends Controller
             $order->status  = 4;
             $order->save();
 
-            return redirect()->route('admin.order.cancel');
+            $notification = array(
+                'message' => 'Order Canceled',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('admin.order.cancel')->with($notification);
         }
         else{
             return back();
@@ -317,4 +330,4 @@ class OrderController extends Controller
         return redirect(route('payment.cancel'));
 
     }
-}
+}   

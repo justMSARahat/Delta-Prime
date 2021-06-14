@@ -91,7 +91,13 @@ class BanerController extends Controller
         }
 
         $baner->save();
-        return redirect()->route('baner.manage');
+
+        $notification = array(
+            'message' => 'Baner Created',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('baner.manage')->with($notification);
 
     }
 
@@ -169,7 +175,13 @@ class BanerController extends Controller
         }
 
         $baner->save();
-        return redirect()->route('baner.manage');
+        
+        $notification = array(
+            'message' => 'Baner Successfully Updated',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('baner.manage')->with($notification);
 
     }
 
@@ -187,7 +199,11 @@ class BanerController extends Controller
                 file::delete('Backend/Image/Baner/' .$baner->image);
             }
             $baner->delete();
-            return redirect()->route('baner.manage');
+            $notification = array(
+                'message' => 'Baner Deleted',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('baner.manage')->with($notification);
         }
         else{
             return back();
