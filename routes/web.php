@@ -96,6 +96,9 @@ Route::get('payment', 'App\Http\Controllers\Backend\OrderController@payment')->n
 Route::get('cancel', 'App\Http\Controllers\Backend\OrderController@cancel')->name('payment.cancel');
 Route::get('payment/success', 'App\Http\Controllers\Backend\OrderController@success')->name('payment.success');
 
+Route::get('newsletter','App\Http\Controllers\Backend\NewsletterController@create');
+Route::post('newsletter','App\Http\Controllers\Backend\NewsletterController@store');
+
 /*
 |--------------------------------------------------------------------------
 | Website Backend Routes
