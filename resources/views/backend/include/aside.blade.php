@@ -415,7 +415,7 @@
                 <li class="nav-header">Website Settings</li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link @if( Route::currentRouteNamed('info.show') || Route::currentRouteNamed('edit')  || Route::currentRouteNamed('payment.settings') ||  Route::currentRouteNamed('optimize.show')  ) active @endif">
+                    <a href="" class="nav-link @if( Route::currentRouteNamed('info.show') || Route::currentRouteNamed('edit') || Route::currentRouteNamed('mail.settings')|| Route::currentRouteNamed('mailchimp.settings') || Route::currentRouteNamed('payment.settings') ||  Route::currentRouteNamed('optimize.show')  ) active @endif">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
                             Setitngs
@@ -433,6 +433,18 @@
                             <a href="{{ route('payment.settings') }}" class="nav-link @if( Route::currentRouteNamed('payment.settings') ) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Payment Methods</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('mail.settings') }}" class="nav-link @if( Route::currentRouteNamed('mail.settings') ) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Mail API</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('mailchimp.settings') }}" class="nav-link @if( Route::currentRouteNamed('mailchimp.settings') ) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Mailchimp API</p>
                             </a>
                         </li>
                         <li class="nav-item">

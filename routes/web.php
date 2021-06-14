@@ -309,6 +309,10 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function(){
         Route::post('/payment-settings','App\Http\Controllers\Backend\WebSettingsController@update_payment')->name('payment.settings.update');
         Route::get('/edit/{id}','App\Http\Controllers\Backend\WebSettingsController@edit')->name('edit');
         Route::post('/edit/{id}','App\Http\Controllers\Backend\WebSettingsController@update_info')->name('edit.update');
+        Route::get('/update/mail','App\Http\Controllers\Backend\WebSettingsController@mail_show')->name('mail.settings');
+        Route::post('/update/mail','App\Http\Controllers\Backend\WebSettingsController@update_payment')->name('mail.settings.update');
+        Route::get('/update/mailchimp','App\Http\Controllers\Backend\WebSettingsController@mailchimp_show')->name('mailchimp.settings');
+        Route::post('/update/mailchimp','App\Http\Controllers\Backend\WebSettingsController@update_payment')->name('mailchimp.settings.update');
 	});
 
     Route::get('/cache', function() {

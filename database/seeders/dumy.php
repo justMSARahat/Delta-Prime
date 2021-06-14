@@ -201,6 +201,35 @@ class dumy extends Seeder
                 'status'   => 1,
             ],
         ]);
+        DB::table('states')->insert([
+            [
+                'name'     => 'Sylhet',
+                'country'    => 1,
+                'status'   => 1,
+            ],
+            [
+                'name'     => 'Dhaka',
+                'country'    => 1,
+                'status'   => 1,
+            ]
+        ]);
+        DB::table('cities')->insert([
+            [
+                'name'     => 'Sylhet',
+                'state' => 1,
+                'status'   => 1,
+            ],
+            [
+                'name'     => 'Sreemangal',
+                'state' => 2,
+                'status'   => 1,
+            ],
+            [
+                'name'     => 'Magura',
+                'state' => 3,
+                'status'   => 1,
+            ],
+        ]);
         DB::table('webinfos')->insert([
             'title'             => 'MSA Rahat',
             'description'       => 'Outstock is a premium Templates theme',

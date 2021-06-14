@@ -14,9 +14,6 @@ class WebSettingsController extends Controller
         $infos   = webinfo::orderBy('id','desc')->first();
         return view('backend.pages.setings.info',compact('infos'));
     }
-    public function payment_show(){
-        return view('backend.pages.setings.payment');
-    }
     public function edit(Request $request, $id){
         $info   = webinfo::find($id);
         if( !is_null($info) ){
@@ -27,7 +24,26 @@ class WebSettingsController extends Controller
         }
     }
 
+    public function payment_show(){
+        return view('backend.pages.setings.payment');
+    }
     public function update_payment(Request $request) {
+
+        $this->putPermanentEnv('MAIL_MAILER', $request->MAIL_MAILER);
+        $this->putPermanentEnv('MAIL_HOST', $request->MAIL_HOST);
+        $this->putPermanentEnv('MAIL_PORT', $request->MAIL_PORT);
+        $this->putPermanentEnv('MAIL_USERNAME', $request->MAIL_USERNAME);
+        $this->putPermanentEnv('MAIL_PASSWORD', $request->MAIL_PASSWORD);
+        $this->putPermanentEnv('MAIL_ENCRYPTION', $request->MAIL_ENCRYPTION);
+        $this->putPermanentEnv('MAIL_FROM_ADDRESS', $request->MAIL_FROM_ADDRESS);
+        $this->putPermanentEnv('MAIL_FROM_NAME', $request->MAIL_FROM_NAME);
+        return redirect()->back();
+    }
+
+    public function mail_show(){
+        return view('backend.pages.setings.mail');
+    }
+    public function update_mail(Request $request) {
 
         $this->putPermanentEnv('PAYPAL_CURRENCY', $request->PAYPAL_CURRENCY);
         $this->putPermanentEnv('PAYPAL_MODE', $request->PAYPAL_MODE);
@@ -39,6 +55,15 @@ class WebSettingsController extends Controller
         $this->putPermanentEnv('PAYPAL_LIVE_API_SECRET', $request->PAYPAL_LIVE_API_SECRET);
         $this->putPermanentEnv('OMISE_PUBLIC_KEY', $request->OMISE_PUBLIC_KEY);
         $this->putPermanentEnv('OMISE_SECRET_KEY', $request->OMISE_SECRET_KEY);
+        return redirect()->back();
+    }
+
+    public function mailchimp_show(){
+        return view('backend.pages.setings.mailchimp');
+    }
+    public function update_mailchimp(Request $request) {
+        $this->putPermanentEnv('MAILCHIMP_APIKEY', $request->MAILCHIMP_APIKEY);
+        $this->putPermanentEnv('MAILCHIMP_LIST_ID', $request->MAILCHIMP_LIST_ID);
         return redirect()->back();
     }
 

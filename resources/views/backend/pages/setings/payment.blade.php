@@ -21,7 +21,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <!-- Default box -->
+        <!-- Default box --> 
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Payment Settings</h3>
