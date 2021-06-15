@@ -135,6 +135,11 @@
         <!-- /.card -->
         <a href="{{ route('product.create') }}" class="btn btn-primary" style="margin: 10px 0"> ADD NEW ITEM </a>
 
+        <div style="display: inline; float: right;">
+            <a class="btn btn-success" href="{{ route('product.ie') }}">Import data</a>
+            <a class="btn btn-info" href="{{ route('product.export') }}">Export data</a>
+        </div>
+
     </section>
     <!-- /.content -->
 </div>

@@ -105,6 +105,8 @@ Route::post('user-password/email','App\Http\Controllers\Auth\ForgotPasswordContr
 Route::get('user-password/reset/{token}','App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('admin.password.reset');
 Route::post('user-password/reset','App\Http\Controllers\Auth\ResetPasswordController@reset')->name('admin.password.update');
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Website Backend Routes
@@ -128,6 +130,10 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function(){
         route::get('/edit/{id}','App\Http\Controllers\Backend\CategoryController@edit')->name('cat.edit');
         route::post('/edit/{id}','App\Http\Controllers\Backend\CategoryController@update')->name('cat.update');
         route::get('/destroy/{id}','App\Http\Controllers\Backend\CategoryController@destroy')->name('cat.delete');
+
+        Route::get('file-import-export', 'App\Http\Controllers\Backend\CategoryController@fileImportExport')->name('category.ie');
+        Route::post('file-import', 'App\Http\Controllers\Backend\CategoryController@fileImport')->name('category.import');
+        Route::get('file-export', 'App\Http\Controllers\Backend\CategoryController@fileExport')->name('category.export');
     });
 
     // Brand
@@ -138,6 +144,10 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function(){
         route::get('/edit/{id}','App\Http\Controllers\Backend\BrandController@edit')->name('brand.edit');
         route::post('/edit/{id}','App\Http\Controllers\Backend\BrandController@update')->name('brand.update');
         route::post('/destroy/{id}','App\Http\Controllers\Backend\BrandController@destroy')->name('brand.delete');
+
+        Route::get('file-import-export', 'App\Http\Controllers\Backend\BrandController@fileImportExport')->name('brand.ie');
+        Route::post('file-import', 'App\Http\Controllers\Backend\BrandController@fileImport')->name('brand.import');
+        Route::get('file-export', 'App\Http\Controllers\Backend\BrandController@fileExport')->name('brand.export');
     });
 
     // Post
@@ -148,6 +158,10 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function(){
         route::get('/edit/{id}','App\Http\Controllers\Backend\PostController@edit')->name('post.edit');
         route::post('/edit/{id}','App\Http\Controllers\Backend\PostController@update')->name('post.update');
         route::get('/destroy/{id}','App\Http\Controllers\Backend\PostController@destroy')->name('post.delete');
+
+        Route::get('file-import-export', 'App\Http\Controllers\Backend\PostController@fileImportExport')->name('post.ie');
+        Route::post('file-import', 'App\Http\Controllers\Backend\PostController@fileImport')->name('post.import');
+        Route::get('file-export', 'App\Http\Controllers\Backend\PostController@fileExport')->name('post.export');
     });
 
     // Product
@@ -159,6 +173,10 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function(){
         route::get('/edit/{id}','App\Http\Controllers\Backend\ProductController@edit')->name('product.edit');
         route::post('/edit/{id}','App\Http\Controllers\Backend\ProductController@update')->name('product.update');
         route::post('/destroy/{id}','App\Http\Controllers\Backend\ProductController@destroy')->name('product.delete');
+
+        Route::get('file-import-export', 'App\Http\Controllers\Backend\ProductController@fileImportExport')->name('product.ie');
+        Route::post('file-import', 'App\Http\Controllers\Backend\ProductController@fileImport')->name('product.import');
+        Route::get('file-export', 'App\Http\Controllers\Backend\ProductController@fileExport')->name('product.export');
     });
 
     // Color
@@ -182,6 +200,10 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function(){
         Route::get('/complete/{id}','App\Http\Controllers\Backend\OrderController@complete')->name('order.complete');
         Route::get('/shiped/{id}','App\Http\Controllers\Backend\OrderController@shiped')->name('order.shiped');
         Route::get('/cancel/{id}','App\Http\Controllers\Backend\OrderController@update')->name('order.cancel');
+
+        Route::get('file-import-export', 'App\Http\Controllers\Backend\OrderController@fileImportExport')->name('order.ie');
+        Route::post('file-import', 'App\Http\Controllers\Backend\OrderController@fileImport')->name('order.import');
+        Route::get('file-export', 'App\Http\Controllers\Backend\OrderController@fileExport')->name('order.export');
     });
 
     // Order
@@ -225,16 +247,6 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function(){
     });
 
     // Menu
-    route::group(['prefix'=>'menu'],function(){
-        route::get('/manage','App\Http\Controllers\Backend\MenuController@index')->name('menu.manage');
-        route::get('/create','App\Http\Controllers\Backend\MenuController@create')->name('menu.create');
-        route::post('/create','App\Http\Controllers\Backend\MenuController@store')->name('menu.store');
-        route::get('/edit/{id}','App\Http\Controllers\Backend\MenuController@edit')->name('menu.edit');
-        route::post('/edit/{id}','App\Http\Controllers\Backend\MenuController@update')->name('menu.update');
-        route::post('/destroy/{id}','App\Http\Controllers\Backend\MenuController@destroy')->name('menu.delete');
-    });
-
-    // Menu
     route::group(['prefix'=>'cms'],function(){
         route::group(['prefix'=>'pageinfo'],function(){
             route::get('/manage','App\Http\Controllers\Backend\PageheaderController@index')->name('header.manage');
@@ -266,6 +278,10 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function(){
         Route::get('/edit/{id}','App\Http\Controllers\Backend\UserController@user_edit')->name('user.edit');
         Route::post('/update/{id}','App\Http\Controllers\Backend\UserController@user_update')->name('user.update');
         Route::get('/delete/{id}','App\Http\Controllers\Backend\UserController@user_destroy')->name('user.delete');
+
+        Route::get('file-import-export', 'App\Http\Controllers\Backend\UserController@fileImportExport')->name('customer.ie');
+        Route::post('file-import', 'App\Http\Controllers\Backend\UserController@fileImport')->name('customer.import');
+        Route::get('file-export', 'App\Http\Controllers\Backend\UserController@fileExport')->name('customer.export');
     });
     Route::prefix('admin')->group(function () {
         Route::get('/manage','App\Http\Controllers\Backend\UserController@admin_index')->name('admin.manage');

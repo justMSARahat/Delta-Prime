@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class category extends Model
 {
+    protected $fillable = [
+        'id',
+        'title',
+        'slug',
+        'parent',
+        'status',
+        'feature',
+        'logo',
+    ];
+
     use HasFactory;
 
     public function parent_cat()

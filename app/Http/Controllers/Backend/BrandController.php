@@ -8,6 +8,9 @@ use App\Models\Backend\brand;
 use App\Models\Backend\category;
 use App\Models\Backend\product;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\BrandImport;
+use App\Exports\BrandExport;
 use File;
 use Image;
 
@@ -170,5 +173,30 @@ class BrandController extends Controller
         else{
             return back();
         }
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileImportExport()
+    {
+        return view('backend.pages.import');
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileImport(Request $request)
+    {
+        Excel::import(new BrandImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileExport()
+    {
+        return Excel::download(new BrandExport, 'Brand.xlsx');
     }
 }

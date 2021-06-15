@@ -315,6 +315,11 @@
         <!-- /.card -->
         <a href="{{ route('cat.create') }}" class="btn btn-primary"> ADD NEW ITEM </a>
 
+        <div style="display: inline; float: right;">
+            <a class="btn btn-success" href="{{ route('category.ie') }}">Import data</a>
+            <a class="btn btn-info" href="{{ route('category.export') }}">Export data</a>
+        </div>
+
     </section>
     <!-- /.content -->
 </div>

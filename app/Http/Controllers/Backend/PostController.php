@@ -8,6 +8,9 @@ use App\Models\Backend\brand;
 use App\Models\Backend\category;
 use App\Models\Backend\post;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PostImport;
+use App\Exports\PostExport;
 use File;
 use Image;
 
@@ -89,7 +92,7 @@ class PostController extends Controller
         }
 
         $post->save();
-        
+
         $notification = array(
             'message' => 'New Post Published',
             'alert-type' => 'success'
@@ -195,7 +198,7 @@ class PostController extends Controller
         }
 
         $post->save();
-        
+
         $notification = array(
             'message' => 'Post Updated',
             'alert-type' => 'success'
@@ -223,7 +226,7 @@ class PostController extends Controller
                 file::delete('Backend/Image/post/' .$post->third_image);
             }
             $post->delete();
-            
+
             $notification = array(
                 'message' => 'Post Removed',
                 'alert-type' => 'danger'
@@ -233,5 +236,30 @@ class PostController extends Controller
         else{
             return back();
         }
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileImportExport()
+    {
+        return view('backend.pages.import');
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileImport(Request $request)
+    {
+        Excel::import(new PostImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileExport()
+    {
+        return Excel::download(new PostExport, 'Posts.xlsx');
     }
 }

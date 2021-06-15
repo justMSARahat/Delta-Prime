@@ -12,6 +12,9 @@ use Auth;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Support\Facades\Http;
 use OmiseCharge;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\OrderImport;
+use App\Exports\OrderExport;
 class OrderController extends Controller
 {
 
@@ -215,7 +218,7 @@ class OrderController extends Controller
         if( !is_null( $order ) ){
             $order->status  = 3;
             $order->save();
-            
+
             $notification = array(
                 'message' => 'Order Completed',
                 'alert-type' => 'success'
@@ -330,4 +333,29 @@ class OrderController extends Controller
         return redirect(route('payment.cancel'));
 
     }
-}   
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileImportExport()
+    {
+        return view('backend.pages.import');
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileImport(Request $request)
+    {
+        Excel::import(new OrderImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileExport()
+    {
+        return Excel::download(new OrderExport, 'Orders.xlsx');
+    }
+}

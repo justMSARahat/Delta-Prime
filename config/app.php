@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         LaravelDaily\Invoices\InvoiceServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -235,6 +236,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
         'Invoice' => LaravelDaily\Invoices\Facades\Invoice::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

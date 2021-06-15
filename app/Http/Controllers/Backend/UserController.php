@@ -10,6 +10,9 @@ use App\Models\Backend\state;
 use App\Models\Backend\city;
 use App\Models\Backend\country;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CustomerImport;
+use App\Exports\CustomerExport;
 use Image;
 use File;
 
@@ -58,7 +61,7 @@ class UserController extends Controller
 
 
         $customer->save();
-        
+
         $notification = array(
             'message' => 'User Created',
             'alert-type' => 'success'
@@ -110,7 +113,7 @@ class UserController extends Controller
         }
 
         $customer->save();
-        
+
         $notification = array(
             'message' => 'User Updated',
             'alert-type' => 'success'
@@ -124,7 +127,7 @@ class UserController extends Controller
         $customer->status      = 2;
 
         $customer->save();
-        
+
         $notification = array(
             'message' => 'User Removed',
             'alert-type' => 'danger'
@@ -176,7 +179,7 @@ class UserController extends Controller
 
 
         $customer->save();
-        
+
         $notification = array(
             'message' => 'User Created',
             'alert-type' => 'success'
@@ -230,7 +233,7 @@ class UserController extends Controller
         }
 
         $customer->save();
-        
+
         $notification = array(
             'message' => 'User Updated',
             'alert-type' => 'success'
@@ -244,11 +247,36 @@ class UserController extends Controller
         $customer->status      = 2;
 
         $customer->save();
-        
+
         $notification = array(
             'message' => 'User Removed',
             'alert-type' => 'danger'
         );
         return redirect()->route('admin.manage')->with($notification);
     }
+
+        /**
+        * @return \Illuminate\Support\Collection
+        */
+        public function fileImportExport()
+        {
+            return view('backend.pages.import');
+        }
+
+        /**
+        * @return \Illuminate\Support\Collection
+        */
+        public function fileImport(Request $request)
+        {
+            Excel::import(new CustomerImport, $request->file('file')->store('temp'));
+            return back();
+        }
+
+        /**
+        * @return \Illuminate\Support\Collection
+        */
+        public function fileExport()
+        {
+            return Excel::download(new CustomerExport, 'users-collection.xlsx');
+        }
 }

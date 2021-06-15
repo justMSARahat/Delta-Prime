@@ -9,6 +9,9 @@ use App\Models\Backend\category;
 use App\Models\Backend\product;
 use App\Models\Backend\webinfo;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductImport;
+use App\Exports\ProductExport;
 use File;
 use Image;
 
@@ -136,7 +139,7 @@ class ProductController extends Controller
         }
 
         $Product->save();
-        
+
         $notification = array(
             'message' => 'New Product Published',
             'alert-type' => 'success'
@@ -264,7 +267,7 @@ class ProductController extends Controller
         }
 
         $Product->save();
-        
+
         $notification = array(
             'message' => 'Product Updated',
             'alert-type' => 'success'
@@ -292,7 +295,7 @@ class ProductController extends Controller
                 file::delete('Backend/Image/Product/' .$product->third_image);
             }
             $product->delete();
-            
+
             $notification = array(
                 'message' => 'Product Removed',
                 'alert-type' => 'danger'
@@ -302,5 +305,30 @@ class ProductController extends Controller
         else{
             return back();
         }
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileImportExport()
+    {
+        return view('backend.pages.import');
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileImport(Request $request)
+    {
+        Excel::import(new ProductImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    /**
+        * @return \Illuminate\Support\Collection
+    */
+    public function fileExport()
+    {
+        return Excel::download(new ProductExport, 'Products.xlsx');
     }
 }

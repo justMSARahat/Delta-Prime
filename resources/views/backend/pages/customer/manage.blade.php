@@ -130,6 +130,11 @@
         </div>
         <!-- /.card -->
 
+        <div style="display: inline; float: right;">
+            <a class="btn btn-success" href="{{ route('customer.ie') }}">Import data</a>
+            <a class="btn btn-info" href="{{ route('customer.export') }}">Export data</a>
+        </div>
+
     </section>
     <!-- /.content -->
 </div>

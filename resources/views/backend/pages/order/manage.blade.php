@@ -133,6 +133,11 @@
         </div>
         <!-- /.card -->
 
+        <div style="display: inline; float: right;">
+            <a class="btn btn-success" href="{{ route('order.ie') }}">Import data</a>
+            <a class="btn btn-info" href="{{ route('order.export') }}">Export data</a>
+        </div>
+
 
     </section>
     <!-- /.content -->

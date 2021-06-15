@@ -121,6 +121,7 @@
                         @endforeach
                     </tbody>
                 </table>
+
             </div>
             <div class="card-footer clearfix">
                 {!! $brands->links('vendor.pagination.custom_2') !!}
@@ -128,6 +129,11 @@
             <!-- /.card-body -->
         </div>
         <a href="{{ route('brand.create') }}" class="btn btn-primary"> ADD NEW ITEM </a>
+
+        <div style="display: inline; float: right;">
+            <a class="btn btn-success" href="{{ route('brand.ie') }}">Import data</a>
+            <a class="btn btn-info" href="{{ route('brand.export') }}">Export data</a>
+        </div>
         <!-- /.card -->
 
     </section>
